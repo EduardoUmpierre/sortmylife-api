@@ -69,3 +69,38 @@ $app->put('/filme/[{id}]', function ($request, $response, $args) {
 
     return $this->response->withStatus(200);
 });
+
+/**
+ * Séries
+ */
+
+// Retorna todos os livros
+$app->get('/series', function ($request, $response, $args) {
+    return $this->response->withJson($this->get('SerieService')->findAll());
+});
+
+// Retorna um livro específico
+$app->get('/series/[{id}]', function ($request, $response, $args) {
+    return $this->response->withJson($this->get('SerieService')->findOneById($args['id']));
+});
+
+// Adiciona um livro
+$app->post('/series', function ($request, $response) {
+    $this->get('SerieService')->insert($request);
+
+    return $this->response->withStatus(201);
+});
+
+// Exclui um livro
+$app->delete('/series/[{id}]', function ($request, $response, $args) {
+    $this->get('SerieService')->delete($args['id']);
+
+    return $this->response->withStatus(200);
+});
+
+// Atualiza um livro
+$app->put('/series/[{id}]', function ($request, $response, $args) {
+    $this->get('SerieService')->update($args['id'], $request);
+
+    return $this->response->withStatus(200);
+});
