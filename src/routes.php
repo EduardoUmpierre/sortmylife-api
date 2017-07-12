@@ -69,3 +69,49 @@ $app->put('/filme/[{id}]', function ($request, $response, $args) {
 
     return $this->response->withStatus(200);
 });
+
+/**
+ * Usuarios
+ */
+
+// Retorna todos os usuarios
+$app->get('/usuarios', function ($request, $response, $args) {
+    return $this->response->withJson($this->get('UserService')->findAll());
+});
+
+// Retorna um usuario específico
+$app->get('/usuario/[{id}]', function ($request, $response, $args) {
+    return $this->response->withJson($this->get('UserService')->findOneById($args['id']));
+});
+
+// Adiciona um usuario
+$app->post('/usuario', function ($request, $response) {
+    $this->get('UserService')->insert($request);
+
+    return $this->response->withStatus(201);
+});
+
+// Exclui um usuario
+$app->delete('/usuario/[{id}]', function ($request, $response, $args) {
+    $this->get('UserService')->delete($args['id']);
+
+    return $this->response->withStatus(200);
+});
+
+// Atualiza um usuario
+$app->put('/usuario/[{id}]', function ($request, $response, $args) {
+    $this->get('UserService')->update($args['id'], $request);
+
+    return $this->response->withStatus(200);
+});
+
+// Verifica o login
+$app->post('/login', function ($request, $response) {
+    $login = $this->get('UserService')->verifyLogin($request);
+
+    if ($login) {
+        return $response->withJson($login, 200);
+    }
+
+    return $this->response->withStatus(401);
+});

@@ -9,3 +9,7 @@ $container['BookService'] = function ($container) {
 $container['MovieService'] = function ($container) {
     return new \api\services\Movie($container);
 };
+
+$container['UserService'] = function ($container) {
+    return new \api\services\User($container);
+};
