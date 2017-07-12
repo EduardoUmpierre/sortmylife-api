@@ -73,7 +73,7 @@ VALUES (:title, :rating, :author, :desc, :image, :year, NOW())');
 
     /**
      * @param $id
-     * @param $request
+     * @param $request 
      */
     public function update($id, $request)
     {

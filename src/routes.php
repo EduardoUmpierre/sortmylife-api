@@ -71,24 +71,37 @@ $app->put('/filme/[{id}]', function ($request, $response, $args) {
 });
 
 /**
-<<<<<<< HEAD
  * Séries
  */
 
-// Retorna todos os livros
+// Retorna todas as séries
 $app->get('/series', function ($request, $response, $args) {
     return $this->response->withJson($this->get('SerieService')->findAll());
 });
 
-// Retorna um livro específico
+// Retorna uma série específica
 $app->get('/series/[{id}]', function ($request, $response, $args) {
     return $this->response->withJson($this->get('SerieService')->findOneById($args['id']));
 });
 
-// Adiciona um livro
+// Adiciona um série
 $app->post('/series', function ($request, $response) {
     $this->get('SerieService')->insert($request);
-=======
+});
+
+// Exclui uma série
+$app->delete('/series/[{id}]', function ($request, $response, $args) {
+    $this->get('SerieService')->delete($args['id']);
+});
+
+// Atualiza uma série
+$app->put('/series/[{id}]', function ($request, $response, $args) {
+    $this->get('SerieService')->update($args['id'], $request);
+
+    return $this->response->withStatus(200);
+});
+
+ /*
  * Usuarios
  */
 
@@ -105,32 +118,17 @@ $app->get('/usuario/[{id}]', function ($request, $response, $args) {
 // Adiciona um usuario
 $app->post('/usuario', function ($request, $response) {
     $this->get('UserService')->insert($request);
->>>>>>> f680f1550b27b204132046bff74134e499a9b334
 
     return $this->response->withStatus(201);
 });
 
-<<<<<<< HEAD
-// Exclui um livro
-$app->delete('/series/[{id}]', function ($request, $response, $args) {
-    $this->get('SerieService')->delete($args['id']);
-=======
 // Exclui um usuario
 $app->delete('/usuario/[{id}]', function ($request, $response, $args) {
     $this->get('UserService')->delete($args['id']);
->>>>>>> f680f1550b27b204132046bff74134e499a9b334
 
     return $this->response->withStatus(200);
 });
 
-<<<<<<< HEAD
-// Atualiza um livro
-$app->put('/series/[{id}]', function ($request, $response, $args) {
-    $this->get('SerieService')->update($args['id'], $request);
-
-    return $this->response->withStatus(200);
-});
-=======
 // Atualiza um usuario
 $app->put('/usuario/[{id}]', function ($request, $response, $args) {
     $this->get('UserService')->update($args['id'], $request);
@@ -148,4 +146,3 @@ $app->post('/login', function ($request, $response) {
 
     return $this->response->withStatus(401);
 });
->>>>>>> f680f1550b27b204132046bff74134e499a9b334
