@@ -27,7 +27,11 @@ require __DIR__ . '/../src/middleware.php';
 require __DIR__ . '/../src/services.php';
 require __DIR__ . '/../services/Book.php';
 require __DIR__ . '/../services/Movie.php';
+<<<<<<< HEAD
 require __DIR__ . '/../services/Serie.php';
+=======
+require __DIR__ . '/../services/User.php';
+>>>>>>> f680f1550b27b204132046bff74134e499a9b334
 
 // Register routes
 require __DIR__ . '/../src/routes.php';
