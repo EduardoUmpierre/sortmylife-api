@@ -35,6 +35,23 @@ $app->put('/livro/[{id}]', function ($request, $response, $args) {
     return $this->response->withStatus(200);
 });
 
+// Adiciona/remove um livro lido
+$app->post('/livro/ler', function ($request, $response) {
+    $result = $this->get('UserBookFavoriteService')->verify($request);
+
+    if ($result) {
+        return $this->response->withStatus(201);
+    }
+
+    return $this->response->withStatus(200);
+});
+
+$app->get('/livro/ler/{user}/{book}', function ($request, $response, $args) {
+    $result = $this->get('UserBookFavoriteService')->findOneByUserAndBook($args['user'], $args['book']);
+
+    return $this->response->withJson($result);
+});
+
 /**
  * Filmes
  */

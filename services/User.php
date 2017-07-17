@@ -47,6 +47,8 @@ class User
     {
         $input = $request->getParsedBody();
 
+        $input['role'] = isset($input['role']) ? $input['role'] : 'role_user';
+
         $password = password_hash($input['password'], PASSWORD_BCRYPT);
 
         $query = $this->db->prepare('INSERT INTO user (name, username, email, password, role, created_at)
@@ -122,8 +124,8 @@ VALUES (:name, :username, :email, :password, :role, NOW())');
 
         if (!empty($user) && password_verify($input['password'], $user->password)) {
             unset($user->password);
-            
-            return $user; 
+
+            return $user;
         }
 
         return;
